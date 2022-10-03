@@ -4,16 +4,14 @@ grammar impl;
 
 start   :  cs+=command* EOF ;
 
-program : c=command                      # SingleCommand
-   | OBRACE cs+=command* CBRACE          # MultipleCommands
-   ;
+command : CMD1
+    | CMD2
+    | CMD3
+    ;
 
-command : x=ID '=' e=expr ';'                               # Assignment
-   | 'output' e=expr ';'                                    # Output
-   | 'while' '('c=condition')' p=program                    # WhileLoop
-   | 'if' '(' c=condition')' p=program                      # IfStat
-   | 'if' '('c1=condition')' p1=program 'else' p2=program   # IfStatement
-   ;
+type : TYPE
+    | STRING
+    ;
 
 expr: e1=expr op=MULTI e2=expr      # MUL
    | e1=expr op=OPERATOR e2=expr    # OP
@@ -30,13 +28,7 @@ condition : e1=expr ALL_OPERATORS e2=expr # ALLOPERATORS
      // ... extend me
      ;
 
-ID : [a-zA-Z_] [a-zA-Z_0-9]*;
-
-FLOAT
- : [0-9]+ '.' [0-9]*
- | '.' [0-9]+
- ;
-
+STRING : [a-zA-Z_] [a-zA-Z]*;
 ALL_OPERATORS : ('==' | '!=' | '<' | '>');
 OBRACE : '{';
 CBRACE : '}';
@@ -46,16 +38,13 @@ MULT : '*';
 DIV : '/';
 MOD : '%';
 NOT : '!';
+TYPE: '.' STRING;
 OR_OP : ('||');
 AND_OP : ('&&');
 MULTI : (MULT | DIV);
 OPERATOR : (PLUS | MINUS);
-
-//ALPHA : [a-zA-Z_ÆØÅæøå] ;
-//NUM   : [0-9] ;
 FALSE   : [0] ;
 TRUE    : [1];
-
 WHITESPACE : [ \n\t\r]+ -> skip;
 COMMENT    : '//'~[\n]*  -> skip;
 COMMENT2   : '/*' (~[*] | '*'~[/]  )*   '*/'  -> skip;
