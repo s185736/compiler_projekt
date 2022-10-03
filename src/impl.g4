@@ -4,15 +4,18 @@ grammar impl;
 
 start   :  cs+=command* EOF ;
 
-command : CMD1
-    | CMD2
+/*Command..*/
+command : 'true'
+    | 'false'
     | CMD3
     ;
 
+/*Type..*/
 type : TYPE
     | STRING
     ;
 
+/*Expressions*/
 expr: e1=expr op=MULTI e2=expr      # MUL
    | e1=expr op=OPERATOR e2=expr    # OP
    | NUM                            # Num
@@ -22,12 +25,14 @@ expr: e1=expr op=MULTI e2=expr      # MUL
    | op=(TRUE|FALSE)                # boolean
    ;
 
+/*Operators & Binary numbers..*/
 condition : e1=expr ALL_OPERATORS e2=expr # ALLOPERATORS
     | e1=expr AND_OP e2=expr        # AND
     | e1=expr OR_OP e2=expr         # OR
      // ... extend me
      ;
 
+/*Definations..*/
 STRING : [a-zA-Z_] [a-zA-Z]*;
 ALL_OPERATORS : ('==' | '!=' | '<' | '>');
 OBRACE : '{';
