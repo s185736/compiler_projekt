@@ -21,13 +21,15 @@ expr: e1=expr op=MULTI e2=expr      # MUL
    | c=FLOAT                        # Constant
    | x=ID                           # Variable
    | '(' e=expr')'                  # Parenthesis
+   | op=(TRUE|FALSE)                # boolean
    ;
 
 condition : e1=expr ALL_OPERATORS e2=expr # ALLOPERATORS
-    | e1=expr AND_OP e2=expr # AND
-    | e1=expr OR_OP e2=expr # OR
+    | e1=expr AND_OP e2=expr        # AND
+    | e1=expr OR_OP e2=expr         # OR
      // ... extend me
      ;
+
 ID : [a-zA-Z_] [a-zA-Z_0-9]*;
 
 FLOAT
@@ -51,7 +53,8 @@ OPERATOR : (PLUS | MINUS);
 
 //ALPHA : [a-zA-Z_ÆØÅæøå] ;
 //NUM   : [0-9] ;
-NUM   : [0-1] ;
+FALSE   : [0] ;
+TRUE    : [1];
 
 WHITESPACE : [ \n\t\r]+ -> skip;
 COMMENT    : '//'~[\n]*  -> skip;
