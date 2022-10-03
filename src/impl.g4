@@ -5,8 +5,8 @@ grammar impl;
 start   :  cs+=command* EOF ;
 
 /*Command..*/
-command : 'true'
-    | 'false'
+command : CMD1
+    | CMD2
     | CMD3
     ;
 
