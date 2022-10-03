@@ -43,13 +43,15 @@ MINUS : '-';
 MULT : '*';
 DIV : '/';
 MOD : '%';
+NOT : '!';
 OR_OP : ('||');
 AND_OP : ('&&');
 MULTI : (MULT | DIV);
 OPERATOR : (PLUS | MINUS);
 
-ALPHA : [a-zA-Z_ÆØÅæøå] ;
-NUM   : [0-9] ;
+//ALPHA : [a-zA-Z_ÆØÅæøå] ;
+//NUM   : [0-9] ;
+NUM   : [0-1] ;
 
 WHITESPACE : [ \n\t\r]+ -> skip;
 COMMENT    : '//'~[\n]*  -> skip;
