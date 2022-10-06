@@ -4,7 +4,7 @@ grammar impl;
 start       : ( ALPHA | STRING | RESET | latchdec | updateDecl | simInp ) * EOF;
 
 latchdec    :   STRING ALPHA PIL ALPHA  ;
-updateDecl  :   ALPHA ASSIGN expr       ;
+updateDecl  :   ALPHA ASSIGN (expr)       ;
 simInp      :   RESET ASSIGN NUMBER     ;
 
 /*Saved for later..*/
@@ -16,11 +16,9 @@ simInp      :   RESET ASSIGN NUMBER     ;
         | PIL               #PIL
         | ASSIGN            #ASSIGN
         ;*/
+
 //expressions
-expr:  'expr'                   # EXPR
-   | NOT 'OscillatorM'          # OSC
-   | AND_OP                     # AND_OP
-   | RESET                      # RESET
+expr: ALPHA ASSIGN                # ALPHA1
    ;
 
 //lexer rules (tokens) - will be cleanup later.
