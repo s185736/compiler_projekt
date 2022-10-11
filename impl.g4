@@ -33,7 +33,7 @@ OR_OP : '||';
 AND_OP : '&&';
 NUMBER : [0-9]* ;
 STRING : '.' ALPHA ;
-ALPHA : [a-zA-Z_ÆØÅæøå]*;
+ALPHA : [a-zA-Z_]*;
 ID: [a-zA-Z_] [a-zA-Z0-9_]*;
 
 HVIDRUM : [ \t\n]+ -> skip ;

@@ -1,10 +1,10 @@
 antlr4 = java org.antlr.v4.Tool
 grun = java org.antlr.v4.gui.TestRig
-SRCFILES = main.java
+SRCFILES = main.java AST.java
 GENERATED = implParser.java implBaseVisitor.java implVisitor.java implLexer.java
 
 all:
-	make tree
+	make test
 
 main.class:	$(SRCFILES) $(GENERATED) impl.g4
 	javac  $(SRCFILES) $(GENERATED)
@@ -15,7 +15,7 @@ implLexer.java:	impl.g4
 implLexer.class: implLexer.java
 	javac $(GENERATED)
 
-test:	main.class input.txt
+test:	implLexer.class main.class impl.g4 input.txt
 	java main input.txt
 
 tree:	implLexer.class impl.g4 input.txt

@@ -1,12 +1,19 @@
 .hardware traffiklys
+
+// Minimal traffiklys eksempel.
+
 .inputs Button
 .outputs Red Green PRed PGreen
+
 .latch Red -> RedM
+
 .update
+
 Red = !RedM && Button
 Green  = !Red 
 PGreen = Red 
 PRed   = !PGreen
+
 .simulate Button=1100110111
 
 /* The simulator output should look something like this:
