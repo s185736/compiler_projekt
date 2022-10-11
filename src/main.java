@@ -46,7 +46,7 @@ public class main {
 // This is parameterized over a return type "<T>" which is in our case
 // simply a Integer.
 
-class Interpreter extends AbstractParseTreeVisitor<Expression> implements implVisitor<Expr> {
+class Interpreter extends AbstractParseTreeVisitor<Expression> implements ParseTreeVisitor<Expr> {
 
 	static Environment env = new Environment();
 	public Double visitStart(implParser.StartContext ctx){
