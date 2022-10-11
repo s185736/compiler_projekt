@@ -1,10 +1,9 @@
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
+
+import java.beans.Expression;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class main {
     public static void main(String[] args) throws IOException{
@@ -47,31 +46,22 @@ public class main {
 // This is parameterized over a return type "<T>" which is in our case
 // simply a Integer.
 
-class Interpreter extends AbstractParseTreeVisitor<Expr> implements implVisitor<Expr> {
+class Interpreter extends AbstractParseTreeVisitor<Expression> implements implVisitor<Expr> {
 
-    public Expr visitStart(implParser.StartContext ctx){
-	return visit(ctx.e1);
-    };
-    public Expr visitMultiplication(implParser.MultiplicationContext ctx){
-	if (ctx.op.getText().equals("*"))
-	    return new Multiplication(visit(ctx.e1),visit(ctx.e2));
-	else
-	    return new Division(visit(ctx.e1),visit(ctx.e2));
-    };
-    public Expr visitAddition(implParser.AdditionContext ctx){
-	if (ctx.op.getText().equals("+"))
-	    return new Addition(visit(ctx.e1),visit(ctx.e2));
-	else
-	    return new Subtraction(visit(ctx.e1),visit(ctx.e2));
-    };
-    public Expr visitVariable(implParser.VariableContext ctx){
-	return new Variable(ctx.x.getText());
-    };
-    public Expr visitConstant(implParser.ConstantContext ctx){
-	return new Constant(Integer.parseInt(ctx.c.getText()));
-    };
-    public Expr visitParentheses(implParser.ParenthesesContext ctx){
-	return visit(ctx.e1);
-    };
+	static Environment env = new Environment();
+	public Double visitStart(implParser.StartContext ctx){
+		return null;
+	};
+
+	public Double visitLatchdec(implParser.StartContext ctx){
+		return null; //TODO skal returnere visit...
+	}
+	public Double visitUpdateDecl(implParser.StartContext ctx){
+		return null; //TODO skal returnere visit...
+	}
+	public Double visitSimInp(implParser.StartContext ctx){
+		return null; //TODO skal returnere visit...
+	}
+
 }
 
