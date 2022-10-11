@@ -1,7 +1,5 @@
-ANTLRJAR = /usr/local/lib/antlr-4.7.2-complete.jar
-antlr4 = java -jar $(ANTLRJAR)
-grun   = java org.antlr.v4.gui.TestRig
-export CLASSPATH := .:$(ANTLRJAR):${CLASSPATH}
+antlr4 = java org.antlr.v4.Tool
+grun = java org.antlr.v4.gui.TestRig
 SRCFILES = main.java Environment.java
 GENERATED = implParser.java implBaseVisitor.java implVisitor.java implLexer.java
 
@@ -22,6 +20,3 @@ test:	implLexer.class main.class impl.g4 input.txt
 
 tree:	implLexer.class impl.g4 input.txt
 	$(grun) impl start -gui -tokens input.txt
-
-clean:
-	rm $(GENERATED) *.class *.interp *.tokens implBaseListener.java implListener.java

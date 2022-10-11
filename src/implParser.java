@@ -1,4 +1,4 @@
-// Generated from impl.g4 by ANTLR 4.7.2
+// Generated from impl.g4 by ANTLR 4.10.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class implParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.10.1", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -138,6 +138,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitStart(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitStart(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final StartContext start() throws RecognitionException {
@@ -231,6 +236,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitLatchdec(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitLatchdec(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final LatchdecContext latchdec() throws RecognitionException {
@@ -280,6 +290,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitUpdateDecl(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitUpdateDecl(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final UpdateDeclContext updateDecl() throws RecognitionException {
@@ -326,6 +341,11 @@ public class implParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitSimInp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitSimInp(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -381,6 +401,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitParenthesis(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitParenthesis(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class MulDivContext extends ExprContext {
 		public ExprContext e1;
@@ -400,6 +425,11 @@ public class implParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitMulDiv(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitMulDiv(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class AddSubContext extends ExprContext {
@@ -421,6 +451,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitAddSub(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitAddSub(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ALPHA3Context extends ExprContext {
 		public ConditionContext condition() {
@@ -434,6 +469,11 @@ public class implParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitALPHA3(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitALPHA3(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ALPHA2Context extends ExprContext {
@@ -453,6 +493,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitALPHA2(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitALPHA2(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ALPHA1Context extends ExprContext {
 		public TerminalNode ALPHA() { return getToken(implParser.ALPHA, 0); }
@@ -464,6 +509,11 @@ public class implParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitALPHA1(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitALPHA1(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -634,6 +684,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitOR(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitOR(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class EXPR5Context extends ConditionContext {
 		public TerminalNode NUMBER() { return getToken(implParser.NUMBER, 0); }
@@ -648,6 +703,11 @@ public class implParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitEXPR5(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitEXPR5(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ANDContext extends ConditionContext {
@@ -665,6 +725,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitAND(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitAND(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class EXPR1Context extends ConditionContext {
 		public TerminalNode OP() { return getToken(implParser.OP, 0); }
@@ -680,6 +745,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitEXPR1(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitEXPR1(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class EXPR4Context extends ConditionContext {
 		public TerminalNode RESET() { return getToken(implParser.RESET, 0); }
@@ -692,6 +762,11 @@ public class implParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitEXPR4(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitEXPR4(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class EXPR3Context extends ConditionContext {
 		public TerminalNode ALPHA() { return getToken(implParser.ALPHA, 0); }
@@ -703,6 +778,11 @@ public class implParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof implListener ) ((implListener)listener).exitEXPR3(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof implVisitor ) return ((implVisitor<? extends T>)visitor).visitEXPR3(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -802,27 +882,54 @@ public class implParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\26M\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\3\2\3\2\3\2\3\2\7\2\25\n\2"+
-		"\f\2\16\2\30\13\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5"+
-		"\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\5\6\64\n\6\3\6\3"+
-		"\6\3\6\3\6\3\6\3\6\7\6<\n\6\f\6\16\6?\13\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7"+
-		"\3\7\3\7\3\7\5\7K\n\7\3\7\2\3\n\b\2\4\6\b\n\f\2\4\3\2\5\6\3\2\7\b\2V\2"+
-		"\26\3\2\2\2\4\33\3\2\2\2\6 \3\2\2\2\b$\3\2\2\2\n\63\3\2\2\2\fJ\3\2\2\2"+
-		"\16\25\7\22\2\2\17\25\7\21\2\2\20\25\7\t\2\2\21\25\5\4\3\2\22\25\5\6\4"+
-		"\2\23\25\5\b\5\2\24\16\3\2\2\2\24\17\3\2\2\2\24\20\3\2\2\2\24\21\3\2\2"+
-		"\2\24\22\3\2\2\2\24\23\3\2\2\2\25\30\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2"+
-		"\2\27\31\3\2\2\2\30\26\3\2\2\2\31\32\7\2\2\3\32\3\3\2\2\2\33\34\7\21\2"+
-		"\2\34\35\7\22\2\2\35\36\7\f\2\2\36\37\7\22\2\2\37\5\3\2\2\2 !\7\22\2\2"+
-		"!\"\7\r\2\2\"#\5\n\6\2#\7\3\2\2\2$%\5\f\7\2%&\7\r\2\2&\'\7\20\2\2\'\t"+
-		"\3\2\2\2()\b\6\1\2)\64\7\22\2\2*+\5\f\7\2+,\7\17\2\2,-\5\f\7\2-\64\3\2"+
-		"\2\2.\64\5\f\7\2/\60\7\3\2\2\60\61\5\n\6\2\61\62\7\4\2\2\62\64\3\2\2\2"+
-		"\63(\3\2\2\2\63*\3\2\2\2\63.\3\2\2\2\63/\3\2\2\2\64=\3\2\2\2\65\66\f\4"+
-		"\2\2\66\67\t\2\2\2\67<\5\n\6\589\f\3\2\29:\t\3\2\2:<\5\n\6\4;\65\3\2\2"+
-		"\2;8\3\2\2\2<?\3\2\2\2=;\3\2\2\2=>\3\2\2\2>\13\3\2\2\2?=\3\2\2\2@A\7\n"+
-		"\2\2AK\5\f\7\2BC\7\17\2\2CK\5\n\6\2DE\7\16\2\2EK\5\n\6\2FK\7\22\2\2GK"+
-		"\7\t\2\2HI\7\20\2\2IK\5\f\7\2J@\3\2\2\2JB\3\2\2\2JD\3\2\2\2JF\3\2\2\2"+
-		"JG\3\2\2\2JH\3\2\2\2K\r\3\2\2\2\b\24\26\63;=J";
+		"\u0004\u0001\u0014K\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0001\u0000\u0001\u0000\u0001\u0000\u0001\u0000\u0001"+
+		"\u0000\u0001\u0000\u0005\u0000\u0013\b\u0000\n\u0000\f\u0000\u0016\t\u0000"+
+		"\u0001\u0000\u0001\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001"+
+		"\u0001\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0003"+
+		"\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0003\u00042\b\u0004\u0001\u0004\u0001\u0004"+
+		"\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0005\u0004:\b\u0004"+
+		"\n\u0004\f\u0004=\t\u0004\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005"+
+		"\u0003\u0005I\b\u0005\u0001\u0005\u0000\u0001\b\u0006\u0000\u0002\u0004"+
+		"\u0006\b\n\u0000\u0002\u0001\u0000\u0003\u0004\u0001\u0000\u0005\u0006"+
+		"T\u0000\u0014\u0001\u0000\u0000\u0000\u0002\u0019\u0001\u0000\u0000\u0000"+
+		"\u0004\u001e\u0001\u0000\u0000\u0000\u0006\"\u0001\u0000\u0000\u0000\b"+
+		"1\u0001\u0000\u0000\u0000\nH\u0001\u0000\u0000\u0000\f\u0013\u0005\u0010"+
+		"\u0000\u0000\r\u0013\u0005\u000f\u0000\u0000\u000e\u0013\u0005\u0007\u0000"+
+		"\u0000\u000f\u0013\u0003\u0002\u0001\u0000\u0010\u0013\u0003\u0004\u0002"+
+		"\u0000\u0011\u0013\u0003\u0006\u0003\u0000\u0012\f\u0001\u0000\u0000\u0000"+
+		"\u0012\r\u0001\u0000\u0000\u0000\u0012\u000e\u0001\u0000\u0000\u0000\u0012"+
+		"\u000f\u0001\u0000\u0000\u0000\u0012\u0010\u0001\u0000\u0000\u0000\u0012"+
+		"\u0011\u0001\u0000\u0000\u0000\u0013\u0016\u0001\u0000\u0000\u0000\u0014"+
+		"\u0012\u0001\u0000\u0000\u0000\u0014\u0015\u0001\u0000\u0000\u0000\u0015"+
+		"\u0017\u0001\u0000\u0000\u0000\u0016\u0014\u0001\u0000\u0000\u0000\u0017"+
+		"\u0018\u0005\u0000\u0000\u0001\u0018\u0001\u0001\u0000\u0000\u0000\u0019"+
+		"\u001a\u0005\u000f\u0000\u0000\u001a\u001b\u0005\u0010\u0000\u0000\u001b"+
+		"\u001c\u0005\n\u0000\u0000\u001c\u001d\u0005\u0010\u0000\u0000\u001d\u0003"+
+		"\u0001\u0000\u0000\u0000\u001e\u001f\u0005\u0010\u0000\u0000\u001f \u0005"+
+		"\u000b\u0000\u0000 !\u0003\b\u0004\u0000!\u0005\u0001\u0000\u0000\u0000"+
+		"\"#\u0003\n\u0005\u0000#$\u0005\u000b\u0000\u0000$%\u0005\u000e\u0000"+
+		"\u0000%\u0007\u0001\u0000\u0000\u0000&\'\u0006\u0004\uffff\uffff\u0000"+
+		"\'2\u0005\u0010\u0000\u0000()\u0003\n\u0005\u0000)*\u0005\r\u0000\u0000"+
+		"*+\u0003\n\u0005\u0000+2\u0001\u0000\u0000\u0000,2\u0003\n\u0005\u0000"+
+		"-.\u0005\u0001\u0000\u0000./\u0003\b\u0004\u0000/0\u0005\u0002\u0000\u0000"+
+		"02\u0001\u0000\u0000\u00001&\u0001\u0000\u0000\u00001(\u0001\u0000\u0000"+
+		"\u00001,\u0001\u0000\u0000\u00001-\u0001\u0000\u0000\u00002;\u0001\u0000"+
+		"\u0000\u000034\n\u0002\u0000\u000045\u0007\u0000\u0000\u00005:\u0003\b"+
+		"\u0004\u000367\n\u0001\u0000\u000078\u0007\u0001\u0000\u00008:\u0003\b"+
+		"\u0004\u000293\u0001\u0000\u0000\u000096\u0001\u0000\u0000\u0000:=\u0001"+
+		"\u0000\u0000\u0000;9\u0001\u0000\u0000\u0000;<\u0001\u0000\u0000\u0000"+
+		"<\t\u0001\u0000\u0000\u0000=;\u0001\u0000\u0000\u0000>?\u0005\b\u0000"+
+		"\u0000?I\u0003\n\u0005\u0000@A\u0005\r\u0000\u0000AI\u0003\b\u0004\u0000"+
+		"BC\u0005\f\u0000\u0000CI\u0003\b\u0004\u0000DI\u0005\u0010\u0000\u0000"+
+		"EI\u0005\u0007\u0000\u0000FG\u0005\u000e\u0000\u0000GI\u0003\n\u0005\u0000"+
+		"H>\u0001\u0000\u0000\u0000H@\u0001\u0000\u0000\u0000HB\u0001\u0000\u0000"+
+		"\u0000HD\u0001\u0000\u0000\u0000HE\u0001\u0000\u0000\u0000HF\u0001\u0000"+
+		"\u0000\u0000I\u000b\u0001\u0000\u0000\u0000\u0006\u0012\u001419;H";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
