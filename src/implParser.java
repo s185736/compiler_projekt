@@ -95,6 +95,7 @@ public class implParser extends Parser {
 	}
 
 	public static class StartContext extends ParserRuleContext {
+
 		public TerminalNode EOF() { return getToken(implParser.EOF, 0); }
 		public List<TerminalNode> ALPHA() { return getTokens(implParser.ALPHA); }
 		public TerminalNode ALPHA(int i) {

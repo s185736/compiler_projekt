@@ -1,44 +1,47 @@
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
-
-import java.beans.Expression;
 import java.io.IOException;
+import java.text.ParseException;
+
+import static jdk.internal.org.jline.utils.Log.error;
 
 public class main {
-    public static void main(String[] args) throws IOException{
 
-	// we expect exactly one argument: the name of the input file
-	if (args.length!=1) {
-	    System.err.println("\n");
-	    System.err.println("Impl Interpreter\n");
-	    System.err.println("=================\n\n");
-	    System.err.println("Please give as input argument a filename\n");
-	    System.exit(-1);
+	public static void main(String[] args) throws IOException {
+
+		// we expect exactly one argument: the name of the input file
+		if (args.length!=1) {
+			System.err.println("\n");
+			System.err.println("Impl Interpreter\n");
+			System.err.println("=================\n\n");
+			System.err.println("Please give as input argument a filename\n");
+			System.exit(-1);
+		}
+		String filename=args[0];
+
+		// open the input file
+		CharStream input = CharStreams.fromFileName(filename);
+		//new ANTLRFileStream (filename); // depricated
+
+		// create a lexer/scanner
+		implLexer lex = new implLexer(input);
+
+		// get the stream of tokens from the scanner
+		CommonTokenStream tokens = new CommonTokenStream(lex);
+
+		// create a parser
+		implParser parser = new implParser(tokens);
+
+		// and parse anything from the grammar for "start"
+		ParseTree parseTree = parser.start();
+
+		// Construct an interpreter and run it on the parse tree
+		Interpreter interpreter = new Interpreter();
+		Expr result=interpreter.visit(parseTree);
+		System.out.println("The result is: "+result.eval());
 	}
-	String filename=args[0];
-
-	// open the input file
-	CharStream input = CharStreams.fromFileName(filename);
-	    //new ANTLRFileStream (filename); // depricated
-	
-	// create a lexer/scanner
-	implLexer lex = new implLexer(input);
-	
-	// get the stream of tokens from the scanner
-	CommonTokenStream tokens = new CommonTokenStream(lex);
-	
-	// create a parser
-	implParser parser = new implParser(tokens);
-	
-	// and parse anything from the grammar for "start"
-	ParseTree parseTree = parser.start();
-
-	// Construct an interpreter and run it on the parse tree
-	Interpreter interpreter = new Interpreter();
-	Expr result=interpreter.visit(parseTree);
-	System.out.println("The result is: "+result.eval());
-    }
 }
 
 // We write an interpreter that implements interface
@@ -46,22 +49,95 @@ public class main {
 // This is parameterized over a return type "<T>" which is in our case
 // simply a Integer.
 
-class Interpreter extends AbstractParseTreeVisitor<Expression> implements ParseTreeVisitor<Expr> {
+class Interpreter extends AbstractParseTreeVisitor<Expr> implements implVisitor<Expr> {
 
-	static Environment env = new Environment();
-	public Double visitStart(implParser.StartContext ctx){
-		return null;
+	public Expr visitStart(implParser.StartContext ctx){
+		return visitStart(ctx);
+	}
+
+	@Override
+	public Expr visitLatchdec(implParser.LatchdecContext ctx) {
+		return visitLatchdec(ctx);
+	}
+
+	@Override
+	public Expr visitUpdateDecl(implParser.UpdateDeclContext ctx) {
+		return visitUpdateDecl(ctx);
+	}
+
+	@Override
+	public Expr visitSimInp(implParser.SimInpContext ctx) {
+		return visitSimInp(ctx);
+	}
+
+	@Override
+	public Expr visitParenthesis(implParser.ParenthesisContext ctx) {
+		return visit(ctx.expr());
+	}
+
+	@Override
+	public Expr visitMulDiv(implParser.MulDivContext ctx) {
+		if (ctx.op.getText().equals("*"))
+			return new Multiplication(visit(ctx.e1),visit(ctx.e2));
+		else
+			return new Division(visit(ctx.e1),visit(ctx.e2));
 	};
 
-	public Double visitLatchdec(implParser.StartContext ctx){
-		return null; //TODO skal returnere visit...
-	}
-	public Double visitUpdateDecl(implParser.StartContext ctx){
-		return null; //TODO skal returnere visit...
-	}
-	public Double visitSimInp(implParser.StartContext ctx){
-		return null; //TODO skal returnere visit...
+	@Override
+	public Expr visitAddSub(implParser.AddSubContext ctx) {
+		if (ctx.op.getText().equals("+"))
+			return new Addition(visit(ctx.e1),visit(ctx.e2));
+		else
+			return new Subtraction(visit(ctx.e1),visit(ctx.e2));
+	};
+
+	@Override
+	public Expr visitALPHA3(implParser.ALPHA3Context ctx) {
+		return visitALPHA3(ctx);
 	}
 
+	@Override
+	public Expr visitALPHA2(implParser.ALPHA2Context ctx) {
+		return visitALPHA2(ctx);
+	}
+
+	@Override
+	public Expr visitALPHA1(implParser.ALPHA1Context ctx) {
+		return visitALPHA1(ctx);
+	}
+
+	@Override
+	public Expr visitEXPR1(implParser.EXPR1Context ctx) {
+		error("This function should not be called actually");
+		return null;
+	}
+
+	@Override
+	public Expr visitAND(implParser.ANDContext ctx) {
+		return visitAND(ctx);
+	}
+
+	@Override
+	public Expr visitOR(implParser.ORContext ctx) {
+		return visitOR(ctx);
+	}
+
+	@Override
+	public Expr visitEXPR3(implParser.EXPR3Context ctx) {
+		error("This function should not be called actually");
+		return null;
+	}
+
+	@Override
+	public Expr visitEXPR4(implParser.EXPR4Context ctx) {
+		error("This function should not be called actually");
+		return null;
+	}
+
+	@Override
+	public Expr visitEXPR5(implParser.EXPR5Context ctx) {
+		error("This function should not be called actually");
+		return null;
+	}
 }
 
