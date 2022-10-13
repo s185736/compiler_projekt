@@ -96,6 +96,8 @@ public class implParser extends Parser {
 
 	public static class StartContext extends ParserRuleContext {
 
+		public List<StartContext> as = new ArrayList<StartContext>();
+
 		public TerminalNode EOF() { return getToken(implParser.EOF, 0); }
 		public List<TerminalNode> ALPHA() { return getTokens(implParser.ALPHA); }
 		public TerminalNode ALPHA(int i) {
@@ -672,9 +674,18 @@ public class implParser extends Parser {
 	}
 	public static class ORContext extends ConditionContext {
 		public ExprContext e2;
+		public ConditionContext c1;
+		public Token or;
+		public ConditionContext c2;
 		public TerminalNode OR_OP() { return getToken(implParser.OR_OP, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
+		}
+		public List<ConditionContext> cond() {
+			return getRuleContexts(ConditionContext.class);
+		}
+		public ConditionContext cond(int i) {
+			return getRuleContext(ConditionContext.class,i);
 		}
 		public ORContext(ConditionContext ctx) { copyFrom(ctx); }
 		@Override
@@ -713,6 +724,15 @@ public class implParser extends Parser {
 	}
 	public static class ANDContext extends ConditionContext {
 		public ExprContext e2;
+		public ConditionContext c1;
+		public Token an;
+		public ConditionContext c2;
+		public List<ConditionContext> condition() {
+			return getRuleContexts(ConditionContext.class);
+		}
+		public ConditionContext condition(int i) {
+			return getRuleContext(ConditionContext.class,i);
+		}
 		public TerminalNode AND_OP() { return getToken(implParser.AND_OP, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);

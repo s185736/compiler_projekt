@@ -1,9 +1,7 @@
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.CharStreams;
 import java.io.IOException;
-import java.text.ParseException;
 
 import static jdk.internal.org.jline.utils.Log.error;
 
@@ -39,8 +37,8 @@ public class main {
 
 		// Construct an interpreter and run it on the parse tree
 		Interpreter interpreter = new Interpreter();
-		Expr result=interpreter.visit(parseTree);
-		System.out.println("The result is: "+result.eval());
+		Double result=interpreter.visit(parseTree);
+		System.out.println("The result is: "+result);
 	}
 }
 
@@ -49,93 +47,105 @@ public class main {
 // This is parameterized over a return type "<T>" which is in our case
 // simply a Integer.
 
-class Interpreter extends AbstractParseTreeVisitor<Expr> implements implVisitor<Expr> {
-
-	public Expr visitStart(implParser.StartContext ctx){
-		return visitStart(ctx);
-	}
-
+class Interpreter extends AbstractParseTreeVisitor<Double> implements implVisitor<Double> {
+	public Double visitStart(implParser.StartContext ctx){
+		for(implParser.StartContext a:ctx.as){
+			visit(a);
+		}
+		return visit(ctx);
+	};
 	@Override
-	public Expr visitLatchdec(implParser.LatchdecContext ctx) {
+	public Double visitLatchdec(implParser.LatchdecContext ctx) {
 		return visitLatchdec(ctx);
 	}
 
 	@Override
-	public Expr visitUpdateDecl(implParser.UpdateDeclContext ctx) {
+	public Double visitUpdateDecl(implParser.UpdateDeclContext ctx) {
 		return visitUpdateDecl(ctx);
 	}
 
 	@Override
-	public Expr visitSimInp(implParser.SimInpContext ctx) {
+	public Double visitSimInp(implParser.SimInpContext ctx) {
 		return visitSimInp(ctx);
 	}
 
 	@Override
-	public Expr visitParenthesis(implParser.ParenthesisContext ctx) {
+	public Double visitParenthesis(implParser.ParenthesisContext ctx) {
 		return visit(ctx.expr());
 	}
 
 	@Override
-	public Expr visitMulDiv(implParser.MulDivContext ctx) {
-		if (ctx.op.getText().equals("*"))
-			return new Multiplication(visit(ctx.e1),visit(ctx.e2));
-		else
-			return new Division(visit(ctx.e1),visit(ctx.e2));
+	public Double visitMulDiv(implParser.MulDivContext ctx) {
+		if(ctx.op.getText().equals("*")){
+			return visit(ctx.expr(0))*visit(ctx.expr(1));}
+		else return visit(ctx.expr(0))/visit(ctx.expr(1));
 	};
 
 	@Override
-	public Expr visitAddSub(implParser.AddSubContext ctx) {
-		if (ctx.op.getText().equals("+"))
-			return new Addition(visit(ctx.e1),visit(ctx.e2));
-		else
-			return new Subtraction(visit(ctx.e1),visit(ctx.e2));
+	public Double visitAddSub(implParser.AddSubContext ctx) {
+		if(ctx.op.getText().equals("+"))
+			return visit(ctx.e1)+visit(ctx.e2);
+		else return visit(ctx.e1)-visit(ctx.e2);
 	};
 
+
 	@Override
-	public Expr visitALPHA3(implParser.ALPHA3Context ctx) {
+	public Double visitALPHA3(implParser.ALPHA3Context ctx) {
 		return visitALPHA3(ctx);
 	}
 
 	@Override
-	public Expr visitALPHA2(implParser.ALPHA2Context ctx) {
+	public Double visitALPHA2(implParser.ALPHA2Context ctx) {
 		return visitALPHA2(ctx);
 	}
 
 	@Override
-	public Expr visitALPHA1(implParser.ALPHA1Context ctx) {
+	public Double visitALPHA1(implParser.ALPHA1Context ctx) {
 		return visitALPHA1(ctx);
 	}
 
 	@Override
-	public Expr visitEXPR1(implParser.EXPR1Context ctx) {
+	public Double visitEXPR1(implParser.EXPR1Context ctx) {
 		error("This function should not be called actually");
 		return null;
 	}
 
 	@Override
-	public Expr visitAND(implParser.ANDContext ctx) {
-		return visitAND(ctx);
+	public Double visitAND(implParser.ANDContext ctx) {
+		if (ctx.an.getText().equals("&&")) {
+			if((visit(ctx.c1)==1.0)&&(visit(ctx.c2)==1.0)){
+				return 1.0;
+			} else {
+				return 0.0;
+			}
+		}
+		return 0.0;
+	}
+	@Override
+	public Double visitOR(implParser.ORContext ctx) {
+		if (ctx.or.getText().equals("||")) {
+			if((visit(ctx.c1)==1.0)||(visit(ctx.c2)==1.0)){
+				return 1.0;
+			} else
+				return 0.0;
+		}
+		return 0.0;
 	}
 
 	@Override
-	public Expr visitOR(implParser.ORContext ctx) {
-		return visitOR(ctx);
-	}
-
-	@Override
-	public Expr visitEXPR3(implParser.EXPR3Context ctx) {
+	public Double visitEXPR3(implParser.EXPR3Context ctx) {
 		error("This function should not be called actually");
 		return null;
 	}
 
 	@Override
-	public Expr visitEXPR4(implParser.EXPR4Context ctx) {
+	public Double visitEXPR4(implParser.EXPR4Context ctx) {
 		error("This function should not be called actually");
 		return null;
 	}
 
 	@Override
-	public Expr visitEXPR5(implParser.EXPR5Context ctx) {
+	public Double visitEXPR5(implParser.EXPR5Context ctx) {
 		error("This function should not be called actually");
 		return null;
 	}
